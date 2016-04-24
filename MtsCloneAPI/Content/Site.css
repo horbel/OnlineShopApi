@@ -20,8 +20,9 @@ a{
     border-radius:5px;
 }
 #logo{
-    background: url(images/logo.jpg) left center no-repeat;
-    background-size: contain;
+    background: url(images/shopLogo.png) no-repeat;
+    background-size: 100% 100%;
+    
     width:263px;
     height: 95px;
     display:block;
@@ -53,7 +54,7 @@ a{
 }
 #top-menu a{
     color:white;
-    margin:0 7px;
+    margin:0 6px;
 }
 #top-menu a:hover{
     text-decoration:underline;
@@ -65,6 +66,48 @@ a{
     background:#5c5757;
     margin-bottom:-3px;
 }
+/*SEARCH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+#search{
+    width:245px;
+    height: 38px;
+    float:left;
+    background: white;
+    border: 2px solid #b4b2b2;    
+    border-radius:5px;
+    margin-top:10px;
+    box-sizing:border-box;
+}
+#search-form input[type=text]{
+    width:205px;
+    float:left;
+    height:23px;
+    margin:5px 0 0 0;
+    padding-left:5px;
+    color:#010101;
+    border: none;
+}
+#search-form input[type=submit]{
+    width:30px;
+    height:23px;   
+    color:#010101;
+    background: url(images/search.png) center left no-repeat;
+    background-size:contain;
+    margin-top:6px;
+    border:none;
+    
+}
+/*CART!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+#сart-button{
+    background:url(images/toCart.png) center left no-repeat;
+    background-size:100% 100%;
+    display:block;
+    width: 155px;
+    height:38px;
+    float:left;
+    margin-top:10px;
+    margin-left:11px;
+}
+
 /*CONTENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 #content{  
     margin-top:3px; 
