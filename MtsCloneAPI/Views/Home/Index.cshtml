@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MtsCloneAPI.Context.Product>
+@{ 
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/Site.css" type="text/css"/>
+</head>
+<body>
+    <div id="top-line"></div>
+    
+    <div id="header">
+        <a href="#" id="logo"></a>
+
+        <div id="call">
+            Звоните +375291305607
+        </div>
+
+        <div id="top-menu">
+            <a href="#">Главная</a>
+            <div class="top-menu-line"></div>
+            <a href="#">Доствка</a>
+            <div class="top-menu-line"></div>
+            <a href="#">Новости</a>
+            <div class="top-menu-line"></div>
+            <a href="#">Отзывы</a>
+            <div class="top-menu-line"></div>
+            <a href="#">Корзина</a>
+            
+        </div>
+
+    </div>
+    <div id="content">  
+        <div id="left-menu"></div>              
+        <div id="products"></div> 
+               
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/IndexScripts/productHandler.js"></script>
+</body>
+</html>

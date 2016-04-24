@@ -1,0 +1,121 @@
+﻿body{
+    background:#e6e4e4;
+    font-family: Tahoma;
+    font-size: 14px;
+    margin:0;
+    padding:0;
+}
+a{
+    text-decoration:none;
+}
+#top-line{
+    background: #323030;
+    height:5px;
+}
+#header{
+    width:940px;
+    height:95px;
+    margin:0 auto;
+    border: 1px #7E7B7B solid;
+    border-radius:5px;
+}
+#logo{
+    background: url(images/logo.jpg) left center no-repeat;
+    background-size: contain;
+    width:263px;
+    height: 95px;
+    display:block;
+    float:left;
+}
+#call {
+    font-size: 30px;
+    color: #7E7B7B;
+    float: left;
+    font-family: Arial;
+    width: 265px;
+    height: 85px;
+    text-align: center;
+    padding-top: 10px;
+   
+}
+    
+    
+#top-menu{
+    width:412px;    
+    height:33px;
+    display:table-cell;
+    vertical-align:middle;
+    background: #323030;
+    background: linear-gradient(-90deg, #323030 10%, #534f4f 80%);
+    border-radius: 0 0 3px 3px;
+    box-sizing:border-box;
+    padding:0 20px;
+}
+#top-menu a{
+    color:white;
+    margin:0 7px;
+}
+#top-menu a:hover{
+    text-decoration:underline;
+}
+.top-menu-line{
+    display:inline-block;
+    width:1px;
+    height:16px;
+    background:#5c5757;
+    margin-bottom:-3px;
+}
+/*CONTENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+#content{  
+    margin-top:3px; 
+    height:2000px;
+    background: #ef9a9a;
+    width:940px;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    
+}
+#left-menu{   
+    margin:0;
+    display:block;
+    float:left;
+    width:240px;
+    height:500px;
+    background:#eae7a3;
+}
+#products{     
+    margin:0;
+    display:block;  
+    width:700px;
+    float:left;
+    background:#a5ed88;
+}
+.productSammary{    
+    width:347px;
+    height:250px;
+    display:inline-block;
+    border:1px solid black;
+    border-radius:5px;
+    
+}
+.productImageContainer{
+    float:left;
+    width:150px;
+}
+.productInfoContainer{
+    width:150px;
+    float:left;
+}
+.BrandName{    
+    width:150px;    
+    text-align:center;
+}
+.ModelName{
+    
+    text-align:center;
+}
+.productDescription{    
+    
+    text-align:center;
+}
