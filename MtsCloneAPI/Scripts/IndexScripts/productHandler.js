@@ -2,14 +2,14 @@
 function WriteResponse(products) {
     var strResult='';
     $.each(products, function (index, product) {
-        strResult += '<div class="productSammary">' + '<div class="productImageContainer">'
-            + '<img src="' + product.ProductImageLocation + '" class="productImage"/>' +
-            '</div>' + '<div class="productInfoContainer">'+'<div class="BrandName">' + product.Brand.Name + '</div>' +
-             '<div class="ModelName">' + product.ModelName + '</div>' +
-             '<div class="productDescription">'+product.Description +'</div>'+ '</div>'+'</div>'
-        
+        strResult += '<div class="product">' + 
+            '<a href="#" class="product-title">' + product.Brand.Name + ' ' + product.ModelName + '</a>'+
+            '<a href="#" > <img class="productImage" width="200" height="200" src="' + product.ProductImageLocation + '"/> </a>' +
+            '<div class="product-price">'+'ЦЕНА: '+product.Price+'$</div>'+
+            '<a href="#" class="to-cart">В корзину</a>'+
+            '</div>'        
     });
-    $("#products").html(strResult);
+    $("#right-block").prepend(strResult);
 }
 function GetAllProducts() {
     $.ajax({
