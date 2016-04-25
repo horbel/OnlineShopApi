@@ -86,15 +86,30 @@ a{
     color:#010101;
     border: none;
 }
-#search-form input[type=submit]{
+#search-button{
     width:30px;
     height:23px;   
     color:#010101;
     background: url(images/search.png) center left no-repeat;
     background-size:contain;
     margin-top:6px;
-    border:none;
-    
+    border:none;    
+}
+#search-button:hover{
+    cursor:pointer;    
+}
+.search-title{
+    padding:0 0 0 15px;
+    font-size:20px;
+    margin-bottom:15px;
+    color:#ffffff;
+    display:block;
+    text-align:left;  
+    float:left;  
+    font-weight:bold;
+    background: #323030;
+    width:400px;
+    border-radius:10px;
 }
 /*CART!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 #сart-button{

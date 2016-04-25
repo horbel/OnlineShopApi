@@ -18,9 +18,10 @@ namespace MtsCloneAPI.Controllers
         {
             return repository.Products;
         }
+
         public Product Get(int id)
         {
-            return repository.Products.FirstOrDefault(x => x.ID == id);
+            return repository.Products.First(x => x.ID == id);
         }
 
         [HttpPut]
