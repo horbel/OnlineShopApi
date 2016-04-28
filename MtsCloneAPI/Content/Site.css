@@ -146,12 +146,16 @@ a{
     display:block;
     float:left;
     width:200px;
-    height:500px;
+    height:1000px;
     background:#ffffff;
 }
-.cat-title, .share-title{
+.cat-title{
+    padding-left:0px;
+    margin-top:0px;
+}
+.share-title {
     width:200px;
-    height:36px;
+    height:36px;    
     background: url(images/catBg.png) repeat-y;
     display:table-cell;
     vertical-align:middle;
@@ -159,13 +163,36 @@ a{
     font-size:18px;
     font-weight:bold;
     color: #333131;
+    box-sizing:border-box;
+}
+.cat-title>li, .share-title{
+    width:200px;
+    /*height:36px;*/
+    padding-top:6px;
+    background: url(images/catBg.png) repeat-y;
+    display:block;
+    /*vertical-align:middle;*/
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    color: #333131;
+    box-sizing:border-box;
 }
 .brands{
+    padding-left:0px;
+    font-weight:normal;
+    background:#ffffff;
+}
+.brands>li{
     width:200px;
+    height:36px;
     margin-top:5px;
-    padding-left:16px;
+    padding-left:15px;
+    text-align:left;
+    /*padding-left:16px;*/
     box-sizing:border-box;
-    
+    display:block;
+    /*float:left;*/
 }
 .brands a{
     display:block;
@@ -181,6 +208,7 @@ a{
 .share-title{
     color:#be2e27;
     text-transform:uppercase;
+    display:block;
 }
 
 

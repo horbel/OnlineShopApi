@@ -1,23 +1,14 @@
 ﻿//WRITE RESPONSE
-function WriteResponse(products, method) {
+function WriteResponse(product, method) {
     var strResult = '';
-    if(Array.isArray(products))
-        for (var i = 0; i < products.length; i++) {
-            strResult += '<div class="product">' +
-                '<a href="#" class="product-title">' + products[i].Brand.Name + ' ' + products[i].ModelName + '</a>' +
-                '<a href="#" > <img class="productImage" width="200" height="200" src="' + products[i].ProductImageLocation + '"/> </a>' +
-                '<div class="product-price">' + 'ЦЕНА: ' + products[i].Price + '$</div>' +
-                '<a href="#" class="to-cart">В корзину</a>' +
-                '</div>';
-        }
-    else {
+    
         strResult += '<div class="product">' +
-                '<a href="#" class="product-title">' + products.Brand.Name + ' ' + products.ModelName + '</a>' +
-                '<a href="#" > <img class="productImage" width="200" height="200" src="' + products.ProductImageLocation + '"/> </a>' +
-                '<div class="product-price">' + 'ЦЕНА: ' + products.Price + '$</div>' +
+                '<a href="#" class="product-title">' + product.Brand.Name + ' ' + product.ModelName + '</a>' +
+                '<a href="#" > <img class="productImage" width="200" height="200" src="' + product.ProductImageLocation + '"/> </a>' +
+                '<div class="product-price">' + 'ЦЕНА: ' + product.Price + '$</div>' +
                 '<a href="#" class="to-cart">В корзину</a>' +
                 '</div>';
-    }
+    
         
     if (method == 'append'){    
         $("#right-block").append(strResult);        
@@ -41,8 +32,34 @@ function GetAllProducts(callback) {
         error: function (x, y, z) {
             alert(x + '/n' + y + '/n' + z + '/n');
         }
-    });
-    
+    });    
+}
+function GetAllBrands(callback) {
+    $.ajax({
+        url: 'api/brand',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            callback(data);
+        },
+        error: function (x, y, z) {
+            alert(x + '/n' + y + '/n' + z + '/n');
+        }
+    })
+}
+
+function GetAllTypes(callback) {
+    $.ajax({
+        url: 'api/type',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            callback(data);
+        },
+        error: function (x, y, z) {
+            alert(x + '/n' + y + '/n' + z + '/n');
+        }
+    })
 }
 //SEARCH
 function search() {
@@ -72,13 +89,46 @@ function search() {
     
 }
 
+//Generation of category list
+function showCategories() {
+    var brands = null;
+    //var products = null;
+    //GetAllBrands(function (data) { brands = data;  });
+   
+    GetAllProducts(function (data) {
+        products = data;
+        GetAllTypes(function (types) {
 
+            var strResult = '<ul class="cat-title">';
+            for (var i = 0; i < types.length; i++) {
+                strResult += '<li>' + types[i].Name +
+                    '<ul class="brands">';
+                for (var j = 0; j < products.length; j++) {
+                    if (products[j].ProductType.Name == types[i].Name)
+                        strResult += '<li><a href=#>&raquo;&raquo;' + products[j].Brand.Name + '</a></li>';
+                }
+                strResult += '</ul>';
+                strResult += '</li>';
+
+            }
+            strResult += '</ul>'
+            $('#categories').html(strResult);
+        })
+    });
+    
+}
 
 //STARTER
 
 function Starter() {
-    GetAllProducts(function (products) { WriteResponse(products, 'prepend'); });    
+    GetAllProducts(function (products) {
+        for (var i = 0; i < products.length; i++) {
+            WriteResponse(products[i], 'prepend');
+        }        
+    });
     $("#search-button").click(search);
+
+    showCategories();
 }
 $(document).ready(Starter);
 
