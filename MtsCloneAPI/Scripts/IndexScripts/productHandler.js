@@ -90,34 +90,44 @@ function search() {
 }
 
 //Generation of category list
-function showCategories() {
-    var brands = null;
-    //var products = null;
-    //GetAllBrands(function (data) { brands = data;  });
-   
+function showCategories() {       
     GetAllProducts(function (data) {
         products = data;
         GetAllTypes(function (types) {
 
-            var strResult = '<ul class="cat-title">';
+            var strResult = '<ul class="cat-list">';
             for (var i = 0; i < types.length; i++) {
-                strResult += '<li>' + types[i].Name +
+                strResult += '<li>' + '<div class="cat-title">' + types[i].Name + '</div>' +
                     '<ul class="brands">';
                 for (var j = 0; j < products.length; j++) {
                     if (products[j].ProductType.Name == types[i].Name)
-                        strResult += '<li><a href=#>&raquo;&raquo;' + products[j].Brand.Name + '</a></li>';
+                        strResult += '<li><span class="brand-link">&raquo;&raquo;' + products[j].Brand.Name + '</span></li>';
                 }
                 strResult += '</ul>';
                 strResult += '</li>';
 
             }
-            strResult += '</ul>'
+            strResult += '</ul>';
+
             $('#categories').html(strResult);
+            $('.brands').hide();
+
+            // click handler            
+            $('.cat-title').click(function () {
+                $(this).next().slideToggle('fast');                
+            });
         })
-    });
+    });   
     
 }
-
+//BRAND-LINK HANDLER. For sorting by brands
+function showByBrand(){
+    function GetAllProducts(products) {
+        $('.brand-link').click(function () {
+            alert('ntfgd');//realise me!
+        })
+    }
+}
 //STARTER
 
 function Starter() {
@@ -126,9 +136,10 @@ function Starter() {
             WriteResponse(products[i], 'prepend');
         }        
     });
-    $("#search-button").click(search);
-
+    $("#search-button").click(search);    
     showCategories();
+    showByBrand();
 }
+
 $(document).ready(Starter);
 
