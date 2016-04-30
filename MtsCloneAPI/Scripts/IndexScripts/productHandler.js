@@ -11,13 +11,13 @@ function WriteResponse(product, method) {
     
         
     if (method == 'append'){    
-        $("#right-block").append(strResult);        
+        $("#products-area").append(strResult);
     }else if(method=='prepend'){
-        $("#right-block").prepend(strResult);
+        $("#products-area").prepend(strResult);
     } else if(method=="after") {
         $("#search-title").after(strResult);//костыль для поиска
     } else {
-        $("#right-block").html(strResult);
+        $("#products-area").html(strResult);
     }
 }
 //GET ALL PRODUCTS
@@ -26,7 +26,11 @@ function GetAllProducts(callback) {
         url: 'api/product',
         type: 'GET',
         dataType: 'json',
-        success: function(data) {            
+        success: function (data) {
+
+            data.productsPerPage = 6;
+            data.totalPages = Math.ceil(data.length / data.productsPerPage);
+            data.currentPage = 1;
             callback(data);
         },
         error: function (x, y, z) {
@@ -67,7 +71,7 @@ function search() {
     var name = $('#search-text').val();
     GetAllProducts(function (products){
         if (name != "" && name != null) {
-            $("#right-block").html("<div class='search-title'>Результаты поиска: </div><div class='clear'></div>'");
+            $("#products-area").html("<div class='search-title'>Результаты поиска: </div><div class='clear'></div>'");
             for (var i = 0; i < products.length; i++) {
                 if (products[i].ModelName.search(name) != -1) {                   
                     ID = products[i].ID;
@@ -112,33 +116,72 @@ function showCategories() {
             $('#categories').html(strResult);
             $('.brands').hide();
 
-            // click handler            
+            // list click handler            
             $('.cat-title').click(function () {
-                $(this).next().slideToggle('fast');                
+                $(this).next().slideToggle('fast');
+                $(this).parent().siblings().find('.brands').slideUp('fast');
+
             });
+
+            //BRAND-LINK HANDLER. For sorting by brands
+            $('.brand-link').click(function () {
+                var brandName = $(this).text();
+                $('.brand-link').parent().removeClass('selectedBrand');
+                $(this).parent().addClass('selectedBrand');
+                
+                brandName = brandName.substring(2);
+                $("#products-area").html('');
+                for (var i = 0; i < products.length; i++) {
+                    if (products[i].Brand.Name == brandName) {
+                        WriteResponse(products[i], 'append');
+                    }
+                }
+            });
+            
         })
     });   
     
 }
-//BRAND-LINK HANDLER. For sorting by brands
-function showByBrand(){
-    function GetAllProducts(products) {
-        $('.brand-link').click(function () {
-            alert('ntfgd');//realise me!
+//Show ALL Products
+function showAllProducts(page) {
+    GetAllProducts(function (products) {
+        if (page) {
+            products.currentPage = page;
+        } else {
+            products.currentPage = 1;
+        }
+        $('#navigation').html(function () {
+            var result = '';
+            for (var i = 0; i < products.totalPages; i++) {
+                result += '<span>' + (i + 1) + '</span>'
+            }
+            return result;
         })
-    }
+
+        $('#products-area').html('');
+
+        for (var i = (products.currentPage - 1) * products.productsPerPage;
+            i < products.currentPage * products.productsPerPage && i<products.length; i++) {
+            WriteResponse(products[i], 'prepend');
+        }
+
+
+        //events
+        //page click handler
+        $('#navigation span').click(function () {
+            var page = parseInt($(this).text());
+            showAllProducts(page);
+        })
+
+        $("#search-button").click(search);
+        $('#main-link').click(function () { showAllProducts(1); });
+    });
 }
 //STARTER
 
 function Starter() {
-    GetAllProducts(function (products) {
-        for (var i = 0; i < products.length; i++) {
-            WriteResponse(products[i], 'prepend');
-        }        
-    });
-    $("#search-button").click(search);    
+    showAllProducts(1);
     showCategories();
-    showByBrand();
 }
 
 $(document).ready(Starter);

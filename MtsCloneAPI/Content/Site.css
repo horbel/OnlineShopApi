@@ -52,11 +52,12 @@ a{
     box-sizing:border-box;
     padding:0 20px;
 }
-#top-menu a{
+#top-menu span{
     color:white;
     margin:0 6px;
+    cursor:pointer;
 }
-#top-menu a:hover{
+#top-menu span:hover{
     text-decoration:underline;
 }
 .top-menu-line{
@@ -176,14 +177,18 @@ a{
     box-sizing:border-box;
     padding-left:40px;
     cursor:pointer;
+    transition: all 0.2s linear;
+}
+.cat-title:hover{
+    padding-left:55px;
 }
 .cat-list{
     margin-top:0px;
     padding-left:0px;
     list-style-type: none;
 }
-.cat-list li{
-    margin-bottom:15px;
+.cat-list > li{
+    margin-bottom:5px;
 }
 .brands{
     padding-left:0px;
@@ -193,10 +198,10 @@ a{
     list-style-type: none;
 }
 .brands>li{
-    width:200px;
-    height:36px;
+    width:200px;    
+    height:20px;
     margin-top:0px;
-    padding-top:9px;
+    padding-top:2px;
     padding-left:25px;
     text-align:left;
     /*padding-left:16px;*/
@@ -212,8 +217,15 @@ a{
 }
 .brands span:hover{
     padding-left: 10px;
-}
 
+    background:#efd559;
+    font-weight:bold;
+}
+.selectedBrand{
+    background:#efd559;
+    font-weight:bold;
+    
+}
 .share-title{
     color:#be2e27;
     text-transform:uppercase;
@@ -289,7 +301,7 @@ a{
     margin:0 auto;
     display:table;
 }
-#navigation a{
+#navigation span{
     background: #c4c4c4;
     width:27px;
     height:27px;
@@ -301,8 +313,9 @@ a{
     padding-top:5px;
     font-weight:bold;
     box-sizing:border-box;
+    cursor:pointer;
 }
 
-#navigation a:hover{
+#navigation span:hover{
     color:#b53232;
 }
