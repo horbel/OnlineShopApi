@@ -1,0 +1,89 @@
+﻿body{
+    background:#e6e4e4;
+    font-family: Tahoma;
+    font-size: 14px;
+    margin:0;
+    padding:0;
+}
+#top-block{
+    width:1250px;
+    height: 50px;    
+    background: linear-gradient(90deg, #0d2e56 , #1f589d );
+    margin:0 auto;
+    padding-left:70px;
+    color:#ffffff;
+    font-size:20px;    
+    font-weight:bold;
+    padding-top:12px;
+    box-sizing:border-box;
+
+}
+#content{
+     margin:0 auto;
+     display:table;
+}
+#left-block{
+    width:250px;
+    height: 740px;
+    float:left;
+    background:#1c1e1f;  
+    
+}
+
+#left-block  span{
+    display:block;
+    height:30px;
+    width: 250px;
+    border-bottom: 1px solid black;    
+    box-sizing:border-box;      
+    color:#ffffff;
+}
+span.left-menu-title{       
+    padding-top:4px;
+    font-size:16px;
+    font-weight:bold; 
+    padding-left:50px;    
+}
+span.left-menu-item{
+    padding-top:5px;  
+    padding-left:30px;
+    cursor:pointer;
+}
+span.left-menu-item:hover{
+    font-weight:bold;
+    padding-left:45px;
+    background:#000000;    
+}
+
+#right-block {
+    width: 1000px;
+    height: 740px;
+    float: left;
+    background: #8ba2bf;
+    
+}
+/*PRODUCTS TABLE*/
+#right-block h2{
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+    text-decoration:underline;
+}
+#product-table{
+    margin:15px auto;
+    border-spacing:10px;
+}
+#product-table td{    
+    border-bottom:1px dashed gray;
+}
+
+#product-table th{
+    border-bottom:2px solid black;
+    
+}
+td .button-conteiner{
+    
+}
+#action-th{
+    
+}
