@@ -1,4 +1,6 @@
-﻿//WRITE RESPONSE
+﻿/// <reference path="C:\Users\Алексей\documents\visual studio 2015\Projects\MtsCloneAPI\MtsCloneAPI\Views/Shared/Cart.html" />
+/// <reference path="C:\Users\Алексей\documents\visual studio 2015\Projects\MtsCloneAPI\MtsCloneAPI\Views/Shared/Cart.cshtml" />
+//WRITE RESPONSE
 function WriteResponse(product, method) {
     var strResult = '';
     
@@ -131,8 +133,10 @@ function showCategories() {
                 
                 brandName = brandName.substring(2);
                 $("#products-area").html('');
+                var ProductType = $(this).parent().parent().parent().before().text().split('»')[0];
                 for (var i = 0; i < products.length; i++) {
-                    if (products[i].Brand.Name == brandName) {
+                    
+                    if (products[i].Brand.Name == brandName && products[i].ProductType.Name==ProductType) {                        
                         WriteResponse(products[i], 'append');
                     }
                 }
@@ -175,13 +179,20 @@ function showAllProducts(page) {
 
         $("#search-button").click(search);
         $('#main-link').click(function () { showAllProducts(1); });
+
+        
     });
 }
 //STARTER
-
+function showCart() {  
+    
+    $('#right-block').load('Cart.html');
+    
+}
 function Starter() {
     showAllProducts(1);
     showCategories();
+    //$('#cart-link').click(showCart)
 }
 
 $(document).ready(Starter);

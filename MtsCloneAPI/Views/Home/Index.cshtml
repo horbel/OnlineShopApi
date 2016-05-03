@@ -6,6 +6,10 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/Content/Site.css" type="text/css"/>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/IndexScripts/productHandler.js"></script>
+    <script src="~/Scripts/CartScripts/cartHandler.js"></script>
 </head>
 <body>
     <div id="top-line"></div>
@@ -18,7 +22,7 @@
         </div>
 
         <div id="top-menu">
-            <span id="main-link">Главная</span>
+            <span id="main-link" >Главная</span>
             <div class="top-menu-line"></div>
             <span id="delivery-link">Доствка</span>
             <div class="top-menu-line"></div>
@@ -26,7 +30,7 @@
             <div class="top-menu-line"></div>
             <span id="comments-link">Отзывы</span>
             <div class="top-menu-line"></div>
-            <span id="cart-link">Корзина</span>            
+            <span id="cart-link"></span>            
         </div>
 
         <div id="search">
@@ -69,7 +73,9 @@
             <div id="products-area">
                 @* динамическая разметка js*@
             </div>           
-
+            <div id="cart-area">
+                @* динамическая разметка js*@
+            </div>
             <div class="clear"></div> 
 
             <div id="navigation">
@@ -78,11 +84,12 @@
                 <a href="#">3</a>
                 <a href="#">&raquo;</a>
             </div>          
+            
         </div> 
 
-               
+           @Ajax.ActionLink("Корзина", "ShowCart", new AjaxOptions { UpdateTargetId = "res"})   
+        <div id="res"></div> 
     </div>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/IndexScripts/productHandler.js"></script>
+
 </body>
 </html>

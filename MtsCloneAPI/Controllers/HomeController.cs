@@ -16,9 +16,17 @@ namespace MtsCloneAPI.Controllers
         private IProductRepository repository = new EFRepository();
         public ActionResult Index()
         {
-            
-
             return View(repository.Products.ToList());
+        }
+
+        public PartialViewResult ShowCart()
+        {
+            return PartialView();
+        }
+
+        public ViewResult Admin()
+        {
+            return View();
         }
     }
 }
