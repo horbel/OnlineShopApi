@@ -18,13 +18,26 @@
     <div id="content">
         <div id="left-block">
             <span class="left-menu-title">Доступ к данным</span>
-            <span id="show-product" class="left-menu-item">Продукты</span>
+            <span id="show-products" class="left-menu-item">Продукты</span>
             <span id="show-categories"class="left-menu-item">Категории</span>
-            <span id="show-brand"class="left-menu-item">Бренды</span>
+            <span id="show-brands"class="left-menu-item">Бренды</span>
             
         </div>
 
         <div id="right-block">
+
+
+            <div id="edit-brand-block">
+                <h2>Редактирование Бренда</h2>
+                <table class="edit-table">
+                    <tr><td><input type="hidden" id="edit-brand-id" /></td><td></td></tr>
+                    <tr><td><lable>Название: </lable></td><td><input type="text" id="edit-brand-name"/></td></tr>                    
+                </table>
+                <button id="edit-brand-button">Сохранить</button>
+            </div>
+
+
+
         </div>
     </div>
 </body>

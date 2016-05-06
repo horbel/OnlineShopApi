@@ -28,4 +28,4 @@ function StarterCart() {
 function alertF() {
     alert('xyu');
 }
-$(this).ready(function () { alert('Hello from CART'); });
+//$(this).ready(function () { alert('Hello from CART'); });
