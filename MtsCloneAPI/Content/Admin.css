@@ -88,6 +88,6 @@ td .button-conteiner{
     
 }
 
-#edit-brand-block{
+#edit-brand-block, #edit-prod-block, #edit-cat-block {
     display:none;
 }

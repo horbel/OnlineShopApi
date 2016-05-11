@@ -70,7 +70,7 @@ function ShowAllProducts(products) {
             '<td>' + products[i].Brand.Name + '</td>'+
             '<td>' + products[i].ModelName + '</td>'+
             '<td>' + products[i].Price + '$</td>'+
-            '<td class="button-conteiner"><button id="edit-btn">Edit</button></td>' +
+            '<td class="button-conteiner"><button button data-item="' + products[i].ID + '" onclick="EditProdItem(this)" id="edit-prod-form-btn">Edit</button></td>' +
             '<td class="button-conteiner"><button id="delete-btn">Delete</button></td>' +
             '</tr>';
     }
@@ -84,7 +84,7 @@ function ShowAllBrands(brands) {
     for (var i = 0; i < brands.length; i++) {        
         result += '<tr><td>' + (i + 1) + '</td>' +     
             '<td>' + brands[i].Name + '</td>' +           
-            '<td class="button-conteiner"><button data-item="'+brands[i].ID+'" onclick="EditItem(this)" id="edit-brand-form-btn">Edit</button></td>' +
+            '<td class="button-conteiner"><button data-item="'+brands[i].ID+'" onclick="EditBrandItem(this)" id="edit-brand-form-btn">Edit</button></td>' +
             '<td class="button-conteiner"><button id="delete-btn">Delete</button></td>' +
             '</tr>';
     }
@@ -99,8 +99,8 @@ function ShowAllTypes(types) {
     for (var i = 0; i < types.length; i++) {
         result += '<tr><td>' + (i + 1) + '</td>' +
             '<td>' + types[i].Name + '</td>' +
-            '<td class="button-conteiner"><button id="edit-btn">Edit</button></td>' +
-            '<td class="button-conteiner"><button id="delete-btn">Delete</button></td>' +
+            '<td class="button-conteiner"><button data-item="' + types[i].ID + '" onclick="EditTypeItem(this)" id="edit-brand-form-btn">Edit</button></td>' +
+            '<td class="button-conteiner"><button id="delete-cat-btn">Delete</button></td>' +
             '</tr>';
     }
     result += '</tbody></table>';
@@ -137,6 +137,37 @@ function SaveBrandChange(brand) {
         }
     })
 }
+
+function ShowType(type) {
+    $('#table-block').css('display', 'none');
+    $('#edit-cat-block').css('display', 'block');
+    $('#edit-cat-id').val(type.ID);
+    $('#edit-cat-name').val(type.Name);
+    $('#edit-cat-button').click(function (event) {
+        event.preventDefault();
+        SaveTypeChange(type);
+    });
+}
+function SaveTypeChange(type) {
+    var newType = {
+        ID: $('#edit-cat-id').val(),
+        Name: $('#edit-cat-name').val()
+    }
+    $.ajax({
+        url: '/api/type/' + newType.ID,
+        type: 'PUT',
+        data: JSON.stringify(newType),
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            $('#edit-cat-block').css('display', 'none');
+            $('#table-block').css('display', 'block');
+            GetAllTypes(function (types) { ShowAllTypes(types) })
+        },
+        error: function (x, y, z) {
+            alert(x + '\n' + y + '\n' + z);
+        }
+    })
+}
 //EDIT FUNCTIONS
 function GetBrand(id) {
     $.ajax({
@@ -152,8 +183,71 @@ function GetBrand(id) {
     })
 }
 
-function EditItem(el) {
+function EditBrandItem(el) {
     // получаем id редактируемого объекта
     var id = $(el).attr('data-item');
     GetBrand(id);
+}
+function EditTypeItem(el) {
+    // получаем id редактируемого объекта
+    var id = $(el).attr('data-item');
+    GetType(id);
+}
+
+function EditProdItem(el) {
+    //getting id 
+    var id = $(el).attr('data-item');
+    GetProd(id);
+}
+function GetProd(id) {
+    $.ajax({
+        url: '/api/product/' + id,
+        type: 'get',
+        dataType:'json',
+        success: function (data) {
+            ShowProd(data);
+        },
+        error: function (x, y, z) {
+            alert(x + '/n' + y + '/n' + z + '/n');
+        }
+    })
+}
+function ShowProd(prod){
+    $('#table-block').css('display', 'none');
+    $('#edit-prod-block').css('display', 'block');
+  
+
+    //$('#edit-cat-button').click(function (event) {
+    //    event.preventDefault();
+    //    SaveTypeChange(type);
+    //});
+    
+    GetAllTypes(function (types) {
+        for (var i = 0; i < types.length; i++) {
+            $('#edit-prod-cat-select').append('<option value="' + types[i].ID + '">' + types[i].Name + '</option>');
+        }
+        $('option').click(function (event) {
+            event.preventDefault();
+            $(this).toggleClass('selected');
+        })
+    })
+    GetAllBrands(function (brands) {
+        for (var i = 0; i < brands.length; i++) {
+            $('#edit-prod-brand-select').append('<option value="' + brands[i].ID + '">' + brands[i].Name + '</option>');
+        }
+    })
+}
+
+function GetType(id) {
+    $.ajax({
+        url: '/api/type/' + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            ShowType(data);
+        },
+        error: function (x, y, z) {
+            alert(x + '/n' + y + '/n' + z + '/n');
+        }
+    })
 }
